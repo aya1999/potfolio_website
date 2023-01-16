@@ -1,0 +1,207 @@
+
+header {
+    height: 80vh;
+    padding-top: 2rem;
+}
+
+.header__container{
+    opacity: 0;
+    top: 5%;
+    margin: 0 auto;
+    z-index: 1;
+    transform-style: preserve-3d;
+    animation: fadeIn 1s forwards;
+}
+
+.text-zone{
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    max-height: 90%;
+}
+
+.text-zone > h1 {
+    font-weight: 600;
+    font-size: 60px;
+    animation: fadeIn 1s 1.8s backwards;
+}
+
+.text-animate {
+    display: inline-block;
+    opacity: 0;
+    animation: bounceIn 1s 1s;
+    animation-fill-mode: forwards;
+    min-width: 10px;
+}
+
+.text-animate-hover {
+    min-width: 10px;
+    display: inline-block;
+    animation-fill-mode: both;
+
+    &:hover {
+        animation: rubberBand 1s;
+        color: var(--color-primary-variant);
+    }
+}
+
+
+@for $i from 13 through 42 {
+    .text-animate._#{$i} {
+        animation-delay: #{$i / 10}s;
+    }
+} 
+
+/*======== Cube ============*/
+.stage-cube-cont {
+    width: 50%;
+    height: 100%;
+    top: 0;
+    padding-top: 6%;
+    margin-left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.cubespinner {
+    animation-name: spincube;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 12s;
+    transform-style: preserve-3d;
+    transform-origin: 100px 100px 0;
+    margin-left: calc(50% - 100px);
+
+    div {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border: 1px solid #ccc;
+        background: rgba(255, 255, 255, 0.6);
+        font-size: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 20px 0px lightyellow;
+
+    }
+
+    .face1 { //html
+        transform: translateZ(125px);
+    }
+    .face2 { //css
+        transform: rotateY(90deg) rotateX(180deg) rotateZ(-180deg) translateZ(125px);
+    }
+    .face3 { //react
+        transform: rotateY(90deg) rotateZ(90deg) translateZ(125px);
+    }
+    .face4 { //js
+        transform: rotateY(180deg) rotateZ(90deg) translateZ(125px);
+    }
+    .face5 { //node
+        transform: rotateY(180deg) rotateZ(-180deg) rotateX(90deg) translateZ(125px);
+    }
+    .face6 { //java
+        transform: rotateY(90deg) rotateX(90deg) translateZ(125px);
+    }
+}
+
+@keyframes spincube {
+    from, 
+    to {
+        transform: rotate(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    16% {
+        transform: rotateY(-90deg);
+    }
+    33% {
+        transform: rotateY(-90deg) rotateZ(90deg);
+    }
+    50% {
+        transform: rotateY(-180deg) rotateZ(90deg);
+    }
+    66% {
+        transform: rotateY(-270deg);
+    }
+    83% {
+        transform: rotateX(90deg);
+    }
+}
+
+
+
+/*======== CTA ============*/
+
+.cta{
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+}
+
+/* ============ Socials ======== */
+
+.header__socials {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 0.8 rem;
+   position: absolute;
+   left: -10;
+   top: 28rem; 
+}
+
+.header__socials::after {
+    content: '';
+    width: 1px;
+    height: 1.5rem;
+    background: var(--color-primary);
+}
+
+
+/* ============ Scroll Bar ======== */
+
+.scroll__down {
+    position: absolute;
+    right: -3.3rem;
+    top: 30rem;
+    transform: rotate(90deg);
+    font-weight: 300;
+    font-size: 0.9rem;
+
+}
+
+/* ========== Media Queries Medium ======== */
+
+@media screen and (max-width: 1024px) {
+    // header{
+    //     height: 100vh;
+    // }
+
+    .cubespinner {
+        overflow: hidden;
+    }
+
+    .text-zone {
+        width: 100%;
+    }
+}
+
+/* ========== Media Queries Small ======== */
+
+@media screen and (max-width: 600px) {
+   
+    .header__socials, .scroll__down {
+        display: none;
+    }
+
+    .cubespinner {
+        overflow: hidden;
+    }
+
+    .text-zone {
+        width: 100%;
+    }
+}
